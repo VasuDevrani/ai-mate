@@ -1,5 +1,6 @@
-import { CompanionForm } from "@/components/companion-form";
+import { CompanionForm } from "@/app/(site)/(routes)/companion/[companionId]/components/companion-form";
 import prismadb from "@/lib/prismadb";
+import { auth, redirectToSignIn } from "@clerk/nextjs";
 
 interface CompanionPageProps {
   params: {
@@ -8,9 +9,16 @@ interface CompanionPageProps {
 }
 
 const CompanionPage = async ({ params }: CompanionPageProps) => {
+  const {userId} = auth();
+
+  if(!userId) {
+    return redirectToSignIn();
+  }
+
   const companion = await prismadb.companion.findUnique({
     where: {
       id: params.companionId,
+      userId
     },
   });
   const categories = await prismadb.category.findMany();

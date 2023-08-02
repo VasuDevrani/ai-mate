@@ -18,7 +18,7 @@ import { Separator } from "@/components/ui/separator";
 import { ImageUpload } from "@/components/image-upload";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import {
   SelectContent,
   SelectItem,
