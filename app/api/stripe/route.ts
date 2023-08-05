@@ -54,6 +54,7 @@ export async function GET() {
           quantity: 1,
         },
       ],
+      // stripe return webhook for server's database call and update after stripe payment 
       metadata: {
         userId,
       },
